@@ -30,9 +30,14 @@ $ awk '{print FNR,$0}' q2_fileA.txt q2_fileB.txt | sort -s -k1,1 | awk 'NR%2==0{
 
 $ echo 56 2 8 9 | awk '{while(1){print "+ - * /", $0}}' | awk '{print $5 $(rand()*4+1) $6 $(rand()*4+1) $7 $(rand()*4+1) $8}' | while read ln; do A=$(echo $ln| bc);echo $ln $A;done |awk '$2==100{print $0;exit(0)}'
 
-# Q6-4. 
+# Q6-4. https://ja.wikipedia.org/wiki/ISO_3166-1 のページから、
+# アイスランド IS
+# アイルランド IE
+# アゼルバイジャン AZ
+# アフガニスタン AF
+# のように、国名と2レターコードの対のリストを作りましょう。
 
-$ 
+$ curl https://ja.wikipedia.org/wiki/ISO_3166-1 2> /dev/null | awk '/<table class="sortable/,/<\/table>/' | awk '/<tbody>/,/<\/tbody>/' | awk '/<td>/,/<\/td>/' | sed 's;.*>\(..*\)</a></td>;\1;' | sed 's;.*>\(..*\)</code></td>;\1;' | awk 'NR%7==1{printf $1" "}NR%7==4{print}'
 
 # Q6-5. 
 
