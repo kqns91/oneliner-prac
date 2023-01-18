@@ -39,9 +39,9 @@ $ echo 56 2 8 9 | awk '{while(1){print "+ - * /", $0}}' | awk '{print $5 $(rand(
 
 $ curl https://ja.wikipedia.org/wiki/ISO_3166-1 2> /dev/null | awk '/<table class="sortable/,/<\/table>/' | awk '/<tbody>/,/<\/tbody>/' | awk '/<td>/,/<\/td>/' | sed 's;.*>\(..*\)</a></td>;\1;' | sed 's;.*>\(..*\)</code></td>;\1;' | awk 'NR%7==1{printf $1" "}NR%7==4{print}'
 
-# Q6-5. 
+# Q6-5. 延々とフィボナッチ数を出力するワンライナーを記述してください。ただし桁数が増えてもなるべく正確に。
 
-$ 
+$ a=0;b=1; while :; do c=$(echo "$a+$b" | bc | tr -d '\n\'); echo $a;a=$b;b=$c; done
 
 # Q6-6. 
 
